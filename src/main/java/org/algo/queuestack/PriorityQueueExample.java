@@ -1,4 +1,4 @@
-package org.algo.queue;
+package org.algo.queuestack;
 
 import java.util.Comparator;
 import java.util.List;
