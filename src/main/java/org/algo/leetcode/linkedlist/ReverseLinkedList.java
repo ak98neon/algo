@@ -1,4 +1,4 @@
-package org.algo.linkedlist;
+package org.algo.leetcode.linkedlist;
 
 public class ReverseLinkedList {
 
