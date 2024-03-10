@@ -5,9 +5,10 @@ public class BinarySearchTree {
     public static void main(String[] args) {
         var root = new TreeNode(5, new TreeNode(4), new TreeNode(10));
         insert(root, 12);
-        System.out.println(root);
-        remove(root, 4);
-        System.out.println("Search: " + search(root, 4));
+//        System.out.println(root);
+//        remove(root, 4);
+//        System.out.println("Search: " + search(root, 4));
+        depthFirstSearch(root);
     }
 
     public static TreeNode search(TreeNode root, int key) {
@@ -70,5 +71,15 @@ public class BinarySearchTree {
         }
 
         return curr;
+    }
+
+    public static void depthFirstSearch(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        depthFirstSearch(root.left);
+        System.out.print(root.val + " ");
+        depthFirstSearch(root.right);
     }
 }
