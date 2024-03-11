@@ -1,5 +1,7 @@
 package org.algo.datastructure.tree;
 
+import java.util.ArrayDeque;
+
 public class BinarySearchTree {
 
     public static void main(String[] args) {
@@ -8,7 +10,7 @@ public class BinarySearchTree {
 //        System.out.println(root);
 //        remove(root, 4);
 //        System.out.println("Search: " + search(root, 4));
-        depthFirstSearch(root);
+        breadthFirstSearch(root);
     }
 
     public static TreeNode search(TreeNode root, int key) {
@@ -81,5 +83,35 @@ public class BinarySearchTree {
         depthFirstSearch(root.left);
         System.out.print(root.val + " ");
         depthFirstSearch(root.right);
+    }
+
+    public static void breadthFirstSearch(TreeNode root) {
+        var deque = new ArrayDeque<TreeNode>();
+
+        if (root != null) {
+            deque.add(root);
+        }
+
+        while (!deque.isEmpty()) {
+            var level = 0;
+
+            var n = deque.size();
+            for (int i = 0; i < n; i++) {
+                var node = deque.pollFirst();
+                System.out.print(node.val + " ");
+
+                if (node.left != null) {
+                    deque.add(node.left);
+                }
+
+                if (node.right != null) {
+                    deque.add(node.right);
+                }
+            }
+
+            System.out.println();
+            System.out.println("Level: " + level);
+            level++;
+        }
     }
 }
