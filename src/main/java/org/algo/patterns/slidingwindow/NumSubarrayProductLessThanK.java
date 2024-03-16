@@ -1,7 +1,5 @@
 package org.algo.patterns.slidingwindow;
 
-import java.util.Stack;
-
 public class NumSubarrayProductLessThanK {
 
     public static void main(String[] args) {
