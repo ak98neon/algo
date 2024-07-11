@@ -15,57 +15,39 @@ public class MergeSort {
     }
 
     private static void sort(int[] arr, int l, int r) {
-        if (l < r) {
-            int m = l + (r - l) / 2;
-
-            sort(arr, l, m);
-            sort(arr, m + 1, r);
-
-            merge(arr, l, m, r);
+        if (l >= r) {
+            return;
         }
+
+        int m = l + (r - l) / 2;
+        sort(arr, l, m);
+        sort(arr, m + 1, r);
+        merge(arr, l, m, r);
     }
 
     private static void merge(int[] arr, int l, int m, int r) {
-        int n1 = m - l + 1;
-        int n2 = r - m;
+        int[] aux = new int[r - l + 1];
 
-        int[] L = new int[n1];
-        int[] R = new int[n2];
-
-        for (int i = 0; i < n1; i++) {
-            L[i] = arr[l + i];
-        }
-
-        for (int i = 0; i < n2; i++) {
-            R[i] = arr[m + 1 + i];
-        }
+        System.arraycopy(arr, l, aux, 0, aux.length);
 
         int i = 0;
-        int j = 0;
+        int j = m - l + 1;
         int k = l;
 
-        while (i < n1 && j < n2) {
-            if (L[i] <= R[j]) {
-                arr[k] = L[i];
+        while (i <= m - l && j < aux.length) {
+            if (aux[i] <= aux[j]) {
+                arr[k] = aux[i];
                 i++;
             } else {
-                arr[k] = R[j];
+                arr[k] = aux[j];
                 j++;
             }
             k++;
         }
 
-        // Copy remaining elements of L[] if any
-        while (i < n1) {
-            arr[k] = L[i];
+        while (i <= m - l) {
+            arr[k] = aux[i];
             i++;
-            k++;
-        }
-
-        // Copy remaining elements of R[] if any
-        while (j < n2) {
-            arr[k] = R[j];
-            j++;
             k++;
         }
     }
